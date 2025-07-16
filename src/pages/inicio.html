@@ -1,0 +1,44 @@
+<!-- /pages/inicio.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Página de Inicio</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
+  <script type="module" src="/scripts/logout.js"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+  <div class="bg-white p-10 rounded-xl shadow-xl text-center animate-fade-in">
+    <h1 class="text-3xl font-bold text-blue-600 mb-4">¡Bienvenido!</h1>
+    <p class="text-gray-700 mb-6">Has iniciado sesión correctamente.</p>
+    <button id="logoutBtn" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition">
+      Cerrar sesión
+    </button>
+  </div>
+</body>
+
+<script>
+    // /scripts/logout.js
+import { getAuth, signOut } from "firebase/auth";
+import { initializeApp } from "firebase/app";
+import { firebaseConfig } from "./firebase-config.js";
+
+// Inicializar Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+const logoutBtn = document.getElementById("logoutBtn");
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", () => {
+    signOut(auth)
+      .then(() => {
+        window.location.href = "/index.html";
+      })
+      .catch((error) => {
+        alert("Error al cerrar sesión: " + error.message);
+      });
+  });
+}
+</script>
+</html>

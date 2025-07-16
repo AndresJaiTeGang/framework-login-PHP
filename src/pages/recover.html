@@ -1,0 +1,56 @@
+<!-- /pages/olvido.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recuperar Contraseña</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
+  <script type="module" src="/scripts/reset-password.js"></script>
+</head>
+<body class="bg-blue-50 flex items-center justify-center h-screen">
+  <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md animate-fade-in">
+    <h2 class="text-xl font-bold mb-4 text-center">Recuperar contraseña</h2>
+    <p class="text-sm text-gray-600 mb-6">Por favor ingresa tu correo electrónico para restablecer tu contraseña.</p>
+    <input id="emailInput" type="email" placeholder="Correo electrónico" class="w-full p-2 border border-gray-300 rounded mb-4" />
+    <button id="resetBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded transition">Enviar</button>
+    <p id="statusMessage" class="mt-4 text-sm text-gray-700 text-center"></p>
+  </div>
+</body>
+
+<script>
+    // /scripts/reset-password.js
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
+import { initializeApp } from "firebase/app";
+import { firebaseConfig } from "./firebase-config.js";
+
+// Inicializar Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+const emailInput = document.getElementById("emailInput");
+const resetBtn = document.getElementById("resetBtn");
+const statusMessage = document.getElementById("statusMessage");
+
+if (resetBtn) {
+  resetBtn.addEventListener("click", () => {
+    const email = emailInput.value.trim();
+    if (!email) {
+      statusMessage.textContent = "Por favor ingresa un correo válido.";
+      statusMessage.classList.add("text-red-600");
+      return;
+    }
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        statusMessage.textContent = "Correo enviado correctamente. Revisa tu bandeja de entrada.";
+        statusMessage.classList.remove("text-red-600");
+        statusMessage.classList.add("text-green-600");
+      })
+      .catch((error) => {
+        statusMessage.textContent = "Error: " + error.message;
+        statusMessage.classList.add("text-red-600");
+      });
+  });
+}
+</script>
+</html>
