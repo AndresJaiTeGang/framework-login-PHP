@@ -51,7 +51,6 @@
   <button onclick="abrirModal('modal-ayuda')" class="hover:underline block w-full text-center">¿Necesitas ayuda?</button>
 </div>
 
-
         <!-- Separador -->
         <div class="my-3 border-t border-black-300" id="separador"></div>
 
@@ -78,66 +77,73 @@
     </div>
 
     <!-- Modal: ¿Olvidaste la contraseña? -->
-<div id="modal-recuperar" class="hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50">
-  <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-md relative">
+<div id="modal-recuperar" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50">
+  <div id="modal-recuperar-content"
+       class="bg-white rounded-xl shadow-xl p-6 w-full max-w-md relative scale-95 opacity-0 transition-all duration-300 ease-out">
+       
     <button onclick="cerrarModal('modal-recuperar')" class="absolute top-2 right-3 text-gray-500 hover:text-black text-lg">✕</button>
+    
     <h2 class="text-lg font-semibold mb-4">Recuperar contraseña</h2>
-    <p class="text-sm mb-4 text-gray-600">Por favor, contacta a soporte institucional o revisa tu correo para instrucciones.</p>
-    <button onclick="cerrarModal('modal-recuperar')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Entendido</button>
+    <p class="text-sm text-gray-600 mb-4">Ingresa tu matrícula o correo institucional para enviarte instrucciones.</p>
+    
+    <form class="space-y-3">
+      <input
+        type="email"
+        placeholder="Correo institucional"
+        class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+        required
+      />
+      <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 rounded-md">
+        Enviar instrucciones
+      </button>
+    </form>
   </div>
 </div>
 
 <!-- Modal: ¿Necesitas ayuda? -->
-<div id="modal-ayuda" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 transition-all duration-300 ease-out">
+<div id="modal-ayuda" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50">
   <div id="modal-ayuda-content"
        class="bg-white rounded-xl shadow-xl p-6 w-full max-w-md relative scale-95 opacity-0 transition-all duration-300 ease-out">
        
-    <!-- Botón de cierre -->
     <button onclick="cerrarModal('modal-ayuda')" class="absolute top-2 right-3 text-gray-500 hover:text-black text-lg">✕</button>
     
-    <!-- Contenido del modal -->
     <h2 class="text-lg font-semibold mb-4">Ayuda</h2>
     <p class="text-sm mb-4 text-gray-600">
       Para soporte técnico, escribe a <strong>soporte@itess.edu.mx</strong> o acude con el personal de TICS.
     </p>
     
-    <!-- Botón cerrar -->
     <button onclick="cerrarModal('modal-ayuda')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
       Cerrar
     </button>
   </div>
 </div>
 
-
-
     <script type="module" src="/src/main.js"></script>
     <script>
-      function abrirModal(id) {
-  const modal = document.getElementById(id);
-  const content = modal.querySelector("div");
+  function abrirModal(id) {
+    const modal = document.getElementById(id);
+    const content = modal.querySelector("div");
 
-  modal.classList.remove("hidden");
+    modal.classList.remove("hidden");
 
-  // Usar timeout para permitir que la animación se dispare
-  setTimeout(() => {
-    content.classList.remove("scale-95", "opacity-0");
-    content.classList.add("scale-100", "opacity-100");
-  }, 10);
-}
+    setTimeout(() => {
+      content.classList.remove("scale-95", "opacity-0");
+      content.classList.add("scale-100", "opacity-100");
+    }, 10);
+  }
 
-function cerrarModal(id) {
-  const modal = document.getElementById(id);
-  const content = modal.querySelector("div");
+  function cerrarModal(id) {
+    const modal = document.getElementById(id);
+    const content = modal.querySelector("div");
 
-  // Animación de salida
-  content.classList.remove("scale-100", "opacity-100");
-  content.classList.add("scale-95", "opacity-0");
+    content.classList.remove("scale-100", "opacity-100");
+    content.classList.add("scale-95", "opacity-0");
 
-  // Esperar a que termine la animación para ocultar
-  setTimeout(() => {
-    modal.classList.add("hidden");
-  }, 300);
-}
-    </script>
+    setTimeout(() => {
+      modal.classList.add("hidden");
+    }, 300);
+  }
+</script>
+
   </body>
 </html>
