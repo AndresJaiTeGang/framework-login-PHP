@@ -1,89 +1,77 @@
-<!DOCTYPE html> <!-- Define el tipo de documento como HTML5 -->
-<html lang="es"> <!-- Establece el idioma principal del contenido como español -->
+<!DOCTYPE html>
+<html lang="es">
   <head>
-    <meta charset="UTF-8" /> <!-- Codificación de caracteres para admitir caracteres especiales -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- Hace el sitio responsive en dispositivos móviles -->
-    <title>Login Institucional</title> <!-- Título que se muestra en la pestaña del navegador -->
-    <link rel="stylesheet" href="/src/style.css" /> <!-- Enlace al archivo de estilos personalizado -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Institucional</title>
+    <link rel="stylesheet" href="/src/style.css" />
   </head>
-  <body class="h-screen bg-cover bg-center bg-no-repeat" style="background-image: url('/src/assets/fondo-ITESS.jpg')">
-    <!-- Establece la imagen de fondo del login, cubre toda la pantalla y centra la imagen -->
-    
-    <div class="flex items-center justify-center h-full backdrop-blur-sm">
-      <!-- Centra el contenido en la pantalla y aplica desenfoque al fondo -->
-      
-      <div class="bg-white/70 rounded-2xl shadow-xl w-[90%] max-w-md p-6 sm:p-10">
-        <!-- Contenedor principal del formulario con fondo blanco semi-transparente, bordes redondeados y sombra -->
-        
-        <!-- Encabezado -->
-        <div class="flex items-center justify-center gap-4 mb-6">
-          <img src="/src/assets/logo-inicio.svg" alt="Logo del ITESS" class="w-16 h-16" />
-          <!-- Logo del ITESS -->
-          
-          <div class="h-14 w-px bg-gray-400"></div>
-          <!-- Línea divisora vertical -->
-          
-          <div class="text-center">
-            <h1 class="text-lg font-semibold leading-tight text-gray-900">
+  <body
+    class="min-h-screen bg-cover bg-center bg-no-repeat"
+    style="background-image: url('/src/assets/fondo-ITESS.jpg')"
+  >
+    <!-- Fondo institucional desenfocado -->
+    <div class="flex items-center justify-center h-full backdrop-blur-sm px-4">
+      <div class="bg-white/70 rounded-xl shadow-xl w-full max-w-sm p-6 sm:p-8">
+        <!-- Tarjeta central con tamaño compacto -->
+
+        <!-- Encabezado institucional -->
+        <div class="flex items-center justify-center gap-4 mb-5">
+          <img src="/src/assets/logo-inicio.svg" alt="Logo del ITESS" class="w-12 h-12" />
+          <div class="h-12 w-px bg-gray-400"></div>
+          <div class="text-center text-sm">
+            <h1 class="text-base font-semibold text-gray-900 leading-tight">
               Instituto Tecnológico Superior<br />de Salvatierra
             </h1>
-            <p class="text-sm text-gray-700">Academia TICS</p>
-            <!-- Nombre de la institución y área académica -->
+            <p class="text-xs text-gray-700">Academia TICS</p>
           </div>
         </div>
 
-        <!-- Formulario -->
-        <form id="login-form" class="space-y-4">
-          <!-- Formulario de inicio de sesión con separación entre campos -->
-          
+        <!-- Formulario de acceso -->
+        <form id="login-form" class="space-y-3">
           <input
             id="email"
             type="text"
             placeholder="Usuario"
-            class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring focus:ring-blue-500"
+            class="w-full px-3 py-2 text-sm rounded-md border border-gray-300 focus:outline-none focus:ring focus:ring-blue-500"
             required
           />
-          <!-- Campo para ingresar usuario o correo -->
-          
           <input
             id="password"
             type="password"
             placeholder="Contraseña"
-            class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring focus:ring-blue-500"
+            class="w-full px-3 py-2 text-sm rounded-md border border-gray-300 focus:outline-none focus:ring focus:ring-blue-500"
             required
           />
-          <!-- Campo para ingresar la contraseña -->
-          
-          <button type="submit" class="w-full py-2 bg-blue-700 text-white font-medium rounded-md hover:bg-blue-800 transition">
+          <button
+            type="submit"
+            class="w-full bg-blue-700 text-white text-sm font-medium py-2 rounded-md hover:bg-blue-800 transition"
+          >
             Iniciar sesión
           </button>
-          <!-- Botón de envío del formulario -->
         </form>
 
-        <!-- Links -->
-        <div class="mt-4 text-sm text-center text-gray-700">
-          <a href="/forgot-password.html" class="hover:underline">¿Olvidaste la contraseña?</a> <br />
-          <a href="/ayuda.html" class="hover:underline">¿Necesitas ayuda?</a>
-          <!-- Enlaces a otras páginas útiles -->
+        <!-- Links de ayuda -->
+        <div class="mt-4 text-xs text-center text-gray-700 space-y-1">
+          <a href="/forgot-password.html" class="hover:underline block">¿Olvidaste la contraseña?</a>
+          <a href="/ayuda.html" class="hover:underline block">¿Necesitas ayuda?</a>
         </div>
 
-        <!-- Divider -->
+        <!-- Separador -->
         <div class="my-4 border-t border-gray-300"></div>
-        <!-- Línea divisoria horizontal -->
 
-        <!-- Social login -->
-        <div class="flex flex-col gap-3">
+        <!-- Botón de Google -->
+        <div class="flex flex-col gap-2">
           <button
             id="google-login"
-            class="flex items-center justify-center gap-2 border border-gray-300 rounded-md py-2 hover:bg-gray-100 transition"
+            class="flex items-center justify-center gap-2 border border-gray-300 rounded-md py-2 text-sm hover:bg-gray-100 transition"
           >
-            <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-5 h-5" alt="Google" />
+            <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-4 h-4" alt="Google" />
             <span>Continuar con Google</span>
           </button>
-          <!-- Botón para iniciar sesión con cuenta de Google -->
         </div>
 
-        <!-- Nota -->
+        <!-- Información adicional -->
         <div class="mt-4 text-xs text-gray-600 flex items-center justify-center gap-2">
           <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
             <path
@@ -93,12 +81,10 @@
             />
           </svg>
           Tu usuario es tu Matrícula o Correo institucional.
-          <!-- Información adicional para el usuario -->
         </div>
       </div>
     </div>
 
     <script type="module" src="/src/main.js"></script>
-    <!-- Carga el archivo JavaScript principal como módulo -->
   </body>
 </html>
