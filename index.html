@@ -46,10 +46,11 @@
         </form>
 
         <!-- Links de ayuda -->
-        <div class="opciones mt-3 text-xs text-center text-gray-700 space-y-1">
-          <a href="/recover.html" class="hover:underline block">¿Olvidaste la contraseña?</a>
-          <a href="/help.html" class="hover:underline block">¿Necesitas ayuda?</a>
-        </div>
+<div class="opciones mt-3 text-xs text-center text-gray-700 space-y-1">
+  <button onclick="abrirModal('modal-recuperar')" class="hover:underline block w-full text-center">¿Olvidaste la contraseña?</button>
+  <button onclick="abrirModal('modal-ayuda')" class="hover:underline block w-full text-center">¿Necesitas ayuda?</button>
+</div>
+
 
         <!-- Separador -->
         <div class="my-3 border-t border-black-300" id="separador"></div>
@@ -75,6 +76,27 @@
         </div>
       </div>
     </div>
+
+    <!-- Modal: ¿Olvidaste la contraseña? -->
+<div id="modal-recuperar" class="hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50">
+  <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-md relative">
+    <button onclick="cerrarModal('modal-recuperar')" class="absolute top-2 right-3 text-gray-500 hover:text-black text-lg">✕</button>
+    <h2 class="text-lg font-semibold mb-4">Recuperar contraseña</h2>
+    <p class="text-sm mb-4 text-gray-600">Por favor, contacta a soporte institucional o revisa tu correo para instrucciones.</p>
+    <button onclick="cerrarModal('modal-recuperar')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Entendido</button>
+  </div>
+</div>
+
+<!-- Modal: ¿Necesitas ayuda? -->
+<div id="modal-ayuda" class="hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50">
+  <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-md relative">
+    <button onclick="cerrarModal('modal-ayuda')" class="absolute top-2 right-3 text-gray-500 hover:text-black text-lg">✕</button>
+    <h2 class="text-lg font-semibold mb-4">Ayuda</h2>
+    <p class="text-sm mb-4 text-gray-600">Para soporte técnico, escribe a <strong>soporte@itess.edu.mx</strong> o acude con el personal de TICS.</p>
+    <button onclick="cerrarModal('modal-ayuda')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Cerrar</button>
+  </div>
+</div>
+
 
     <script type="module" src="/src/main.js"></script>
   </body>
