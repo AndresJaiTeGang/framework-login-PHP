@@ -2,15 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #ffffff;
+  color: #213547;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -18,85 +16,130 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  display: flex;
+  place-items: center;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.logo {
-  height: 60px;
-  width: 60px;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vanilla:hover {
-  filter: drop-shadow(0 0 2em #f7df1eaa);
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+a {
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  color: #1d4ed8;
+  text-decoration: none;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+a:hover {
+  color: #1749c3;
+  text-decoration: underline;
+}
+
+/* FORMULARIO */
+.max-w-md {
+  max-width: 430px !important;
+}
+
+/* LOGO */
+.logo {
+  height: 90px;
+  width: 90px;
+}
+
+/* INPUTS */
+#email,
+#password {
+  width: 100%;
+  height: 45px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.95);
+  color: black;
+  margin-top: 10px;
+  font-size: 14px;
+  padding: 0 12px;
+  border: 1px solid #ccc;
+  transition: border-color 0.2s ease-in-out;
+}
+
+#email:focus,
+#password:focus {
+  outline: none;
+  border-color: #1d4ed8;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+
+/* BOTÓN INICIAR SESIÓN */
+#inicia-sesion {
+  width: 100%;
+  height: 45px;
+  border-radius: 8px;
+  background-color: #1d4ed8;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+  border: none;
+}
+
+#inicia-sesion:hover {
+  background-color: #1749c3;
+}
+
+/* BOTÓN GOOGLE */
+#google-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 42px;
+  padding: 0 12px;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background-color: white;
+  color: #333;
+  transition: background-color 0.3s ease;
+}
+
+#google-login:hover {
+  background-color: #f3f4f6;
+}
+
+#google-login img {
+  width: 18px;
+  height: 18px;
+}
+
+/* INFORMACIÓN EXTRA */
+.mt-3.text-xs.text-gray-600 {
+  margin-top: 12px;
+  font-size: 12px;
+  color: #4b5563;
+}
+
+svg.text-gray-500 {
+  color: #6b7280;
+}
+
+/* SEPARADOR */
+#separador {
+  margin: 16px 0;
+}
+
+/* RESPONSIVE */
+@media (max-width: 480px) {
+  .max-w-md {
+    max-width: 90%;
   }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+
+  #email,
+  #password,
+  #inicia-sesion,
+  #google-login {
+    font-size: 13px;
+    height: 42px;
   }
 }
