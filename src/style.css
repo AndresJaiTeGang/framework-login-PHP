@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -32,37 +33,36 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  padding: 1rem;
-  font-size: 0.875rem; /* text-sm */
 }
 
 h1 {
-  font-size: 2.25rem; /* text-3xl */
-  line-height: 2.5rem; /* leading-relaxed */
+  font-size: 3.2em;
+  line-height: 1.1;
 }
 
 #app {
-  max-width: 100%;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 1.5rem; /* p-6 */
+  padding: 2rem;
   text-align: center;
 }
 
 .logo {
-  height: 4rem; /* h-16 */
-  padding: 1rem; /* p-4 */
+  height: 60px;
+  width: 60px;
+  padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
 }
 .logo:hover {
-  filter: drop-shadow(0 0 1rem #646cffaa);
+  filter: drop-shadow(0 0 2em #646cffaa);
 }
 .logo.vanilla:hover {
-  filter: drop-shadow(0 0 1rem #f7df1eaa);
+  filter: drop-shadow(0 0 2em #f7df1eaa);
 }
 
 .card {
-  padding: 1.25rem; /* p-5 */
+  padding: 2em;
 }
 
 .read-the-docs {
@@ -70,10 +70,10 @@ h1 {
 }
 
 button {
-  border-radius: 0.5rem; /* rounded-md */
+  border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.5rem 1rem; /* py-2 px-4 */
-  font-size: 0.875rem; /* text-sm */
+  padding: 0.6em 1.2em;
+  font-size: 1em;
   font-weight: 500;
   font-family: inherit;
   background-color: #1a1a1a;
