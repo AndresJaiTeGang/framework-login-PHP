@@ -98,6 +98,15 @@
 </div>
 
 
-    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/main.js">
+      function abrirModal(id) {
+    document.getElementById(id).classList.remove('hidden');
+  }
+
+  function cerrarModal(id) {
+    document.getElementById(id).classList.add('hidden');
+  }
+
+    </script>
   </body>
 </html>
