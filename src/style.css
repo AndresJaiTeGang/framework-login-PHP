@@ -129,7 +129,7 @@ svg.text-gray-500 {
   margin: 16px 0;
 }
 
-#info{
+#info {
   height: 20px;
   width: 20px;
 }
@@ -155,17 +155,20 @@ svg.text-gray-500 {
 }
 
 .rectangulo-fondo {
-      position: absolute;
-      top: 60px;    /* Puedes ajustar según tu diseño */
-      bottom: 60px;
-      width: 60%;
-      height: 85%;
-      background-color: rgba(255, 255, 255, 0.6); /* Blanco semitransparente */
-      z-index: 0;    /* Debajo del texto */
-      border-radius: 8px; /* Opcional: esquinas redondeadas */
+  position: absolute;
+  top: 60px; /* Puedes ajustar según tu diseño */
+  bottom: 60px;
+  width: 60%;
+  height: 85%;
+  background-color: rgba(255, 255, 255, 0.6); /* Blanco semitransparente */
+  z-index: 0; /* Debajo del texto */
+  border-radius: 8px; /* Opcional: esquinas redondeadas */
 }
 
 .contenido {
+  top: 60px; /* Puedes ajustar según tu diseño */
+  bottom: 60px;
+  width: 60%;
+  height: 85%;
   z-index: 1;
 }
-
