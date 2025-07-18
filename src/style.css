@@ -160,7 +160,7 @@ svg.text-gray-500 {
       bottom: 60px;
       left: 200px;
       right: 200px;
-      width: 65%;
+      width: 60%;
       height: 85%;
       background-color: rgba(255, 255, 255, 0.6); /* Blanco semitransparente */
       z-index: 0;    /* Debajo del texto */
