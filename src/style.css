@@ -172,8 +172,8 @@ svg.text-gray-500 {
 .contenido {
   top: 60px; /* Puedes ajustar según tu diseño */
   bottom: 60px;
-  width: 45%;
-  height: 80%;
+  width: 35%;
+  height: 70%;
   z-index: 1;
   align-items: center;
 }
