@@ -165,7 +165,7 @@ svg.text-gray-500 {
       border-radius: 8px; /* Opcional: esquinas redondeadas */
 }
 
-#contenido {
+.contenido {
   z-index: 1;
 }
 
