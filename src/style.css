@@ -155,11 +155,13 @@ svg.text-gray-500 {
 }
 
 .rectangulo-fondo {
-  position: absolute;
-      top: 100px;    /* Puedes ajustar según tu diseño */
-      left: 50px;
-      width: 80%;
-      height: 300px;
+      position: absolute;
+      top: 60px;    /* Puedes ajustar según tu diseño */
+      bottom: 60px;
+      left: 200px;
+      right: 200px;
+      width: 70%;
+      height: 80%;
       background-color: rgba(255, 255, 255, 0.6); /* Blanco semitransparente */
       z-index: 0;    /* Debajo del texto */
       border-radius: 8px; /* Opcional: esquinas redondeadas */
