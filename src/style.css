@@ -182,3 +182,7 @@ svg.text-gray-500 {
     height: 40px;
     background-color: gray;
   }
+
+  #inicia-sesion {
+    width: 60%;
+  }
