@@ -47,6 +47,7 @@ a:hover {
 }
 
 h1 {
+  top: 10px
   font-size: 14px;
 }
 
@@ -180,11 +181,11 @@ svg.text-gray-500 {
 
 .linea-vertical {
     width: 1px;
-    height: 40px;
+    height: 90px;
     background-color: gray;
   }
 
   #inicia-sesion {
     width: 60%;
-    
+    align-items: center;
   }
