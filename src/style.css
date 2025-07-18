@@ -154,3 +154,11 @@ svg.text-gray-500 {
   -webkit-backdrop-filter: blur(12px);
 }
 
+#fondo-blanco {
+  z-index: 0;
+}
+
+#contenido {
+  z-index: 1;
+}
+
