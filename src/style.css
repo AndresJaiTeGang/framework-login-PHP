@@ -176,10 +176,15 @@ svg.text-gray-500 {
   width: 35%;
   height: 70%;
   z-index: 1;
+  align-items: center;
 }
 
 .linea-vertical {
     width: 1px;
     height: 90px;
     background-color: gray;
+  }
+
+  #inicia-sesion {
+    width: 60%;
   }
