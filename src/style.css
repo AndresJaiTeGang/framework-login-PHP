@@ -179,12 +179,6 @@ svg.text-gray-500 {
   align-items: center;
 }
 
-.linea-vertical {
-    width: 1px;
-    height: 90px;
-    background-color: gray;
-  }
-
   #inicia-sesion {
     width: 60%;
   }

@@ -1,46 +1,55 @@
-import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth, googleProvider } from './src/auth/firebaseConfig.js';
+import {
+  signInWithPopup,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyClRsFh2-yh7Ft8JXLJrB4NdqBeBhsL8UI",
-  authDomain: "framework-login.firebaseapp.com",
-  projectId: "framework-login",
-  storageBucket: "framework-login.firebasestorage.app",
-  messagingSenderId: "745627812413",
-  appId: "1:745627812413:web:98e255e61c8b2355cde054",
-  measurementId: "G-4NHVV3Z9ZN"
-};
+// LOGIN CON GOOGLE
+document.getElementById("google-login").addEventListener("click", () => {
+  signInWithPopup(auth, googleProvider)
+    .then(async (result) => {
+      const idToken = await result.user.getIdToken();
+      enviarTokenAlBackend(idToken);
+    })
+    .catch(error => {
+      console.error("Error al iniciar con Google:", error);
+    });
+});
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
+// LOGIN CON CORREO
+document.getElementById("login-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
 
-// LOGIN con usuario/contraseña
-const loginForm = document.getElementById("login-form");
-if (loginForm) {
-  loginForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+  try {
+    // Puedes cambiar a `createUserWithEmailAndPassword` para registrar
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const idToken = await userCredential.user.getIdToken();
+    enviarTokenAlBackend(idToken);
+  } catch (error) {
+    document.getElementById("auth-message").innerText = "Error: " + error.message;
+    console.error("Login fallido:", error);
+  }
+});
 
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      window.location.href = "/inicio.html";
-    } catch (error) {
-      alert("Error al iniciar sesión: " + error.message);
-    }
-  });
+// ENVÍO DEL TOKEN AL BACKEND
+async function enviarTokenAlBackend(idToken) {
+  const response = await fetch("http://framework-login.com/backend/verificarToken.php", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ idToken }) // envía JSON con la propiedad idToken
+});
+
+
+  const data = await response.json();
+console.log(data);
+if(data.success){
+  alert("Login exitoso");
+  window.location.href = "home.php"; // o donde redirijas tras login
+} else {
+  alert("Error: " + (data.error || "No autorizado"));
 }
 
-// LOGIN con Google
-const googleLoginBtn = document.getElementById("google-login");
-if (googleLoginBtn) {
-  googleLoginBtn.addEventListener("click", async () => {
-    try {
-      await signInWithPopup(auth, provider);
-      window.location.href = "/inicio.html";
-    } catch (error) {
-      alert("Error al iniciar con Google: " + error.message);
-    }
-  });
 }

@@ -1,6 +1,9 @@
 // src/auth/firebaseConfig.js
-import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import {
+  getAuth,
+  GoogleAuthProvider,
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyClRsFh2-yh7Ft8JXLJrB4NdqBeBhsL8UI",
@@ -9,7 +12,7 @@ const firebaseConfig = {
   storageBucket: "framework-login.appspot.com",
   messagingSenderId: "745627812413",
   appId: "1:745627812413:web:98e255e61c8b2355cde054",
-  measurementId: "G-4NHVV3Z9ZN"
+  measurementId: "G-4NHVV3Z9ZN",
 };
 
 const app = initializeApp(firebaseConfig);
