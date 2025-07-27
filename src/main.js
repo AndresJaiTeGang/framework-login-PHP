@@ -1,55 +1,83 @@
-import { auth, googleProvider } from './src/auth/firebaseConfig.js';
+import { auth, googleProvider } from './auth/firebaseConfig';
 import {
   signInWithPopup,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword
+  signInWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-// LOGIN CON GOOGLE
-document.getElementById("google-login").addEventListener("click", () => {
-  signInWithPopup(auth, googleProvider)
-    .then(async (result) => {
-      const idToken = await result.user.getIdToken();
-      enviarTokenAlBackend(idToken);
-    })
-    .catch(error => {
-      console.error("Error al iniciar con Google:", error);
+document.addEventListener("DOMContentLoaded", () => {
+  let loginInProgress = false;
+
+  const googleBtn = document.getElementById("google-login");
+  const loginForm = document.getElementById("login-form");
+
+  if (googleBtn) {
+    googleBtn.addEventListener("click", async () => {
+      if (loginInProgress) return;
+      loginInProgress = true;
+
+      try {
+        const result = await signInWithPopup(auth, googleProvider);
+        const idToken = await result.user.getIdToken();
+        await enviarTokenAlBackend(idToken);
+      } catch (error) {
+        if (error.code === 'auth/popup-closed-by-user') {
+          alert("Cerraste la ventana antes de completar el inicio de sesión.");
+        } else if (error.code === 'auth/cancelled-popup-request') {
+          alert("Ya hay una ventana de inicio de sesión abierta.");
+        } else {
+          alert("Error en el inicio de sesión con Google.");
+          console.error("Error al iniciar sesión con Google:", error);
+        }
+      } finally {
+        loginInProgress = false;
+      }
     });
-});
+  } else {
+    console.error("No se encontró el botón con ID 'google-login'");
+  }
 
-// LOGIN CON CORREO
-document.getElementById("login-form").addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+  if (loginForm) {
+    loginForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-  try {
-    // Puedes cambiar a `createUserWithEmailAndPassword` para registrar
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    const idToken = await userCredential.user.getIdToken();
-    enviarTokenAlBackend(idToken);
-  } catch (error) {
-    document.getElementById("auth-message").innerText = "Error: " + error.message;
-    console.error("Login fallido:", error);
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const idToken = await userCredential.user.getIdToken();
+        await enviarTokenAlBackend(idToken);
+      } catch (error) {
+        const msg = error.message || "Error desconocido";
+        document.getElementById("auth-message").innerText = "Error: " + msg;
+        console.error("Login con correo fallido:", error);
+      }
+    });
+  } else {
+    console.error("No se encontró el formulario con ID 'login-form'");
   }
 });
 
-// ENVÍO DEL TOKEN AL BACKEND
 async function enviarTokenAlBackend(idToken) {
-  const response = await fetch("http://framework-login.com/backend/verificarToken.php", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ idToken }) // envía JSON con la propiedad idToken
-});
+  try {
+    const response = await fetch("http://framework-login.com/backend/verificarToken.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ idToken })
+    });
 
+    const data = await response.json();
+    console.log("Respuesta del backend:", data);
 
-  const data = await response.json();
-console.log(data);
-if(data.success){
-  alert("Login exitoso");
-  window.location.href = "home.php"; // o donde redirijas tras login
-} else {
-  alert("Error: " + (data.error || "No autorizado"));
-}
+    if (data.success) {
+      alert("Login exitoso");
+      window.location.href = "home.php";
+    } else {
+      alert("Error: " + (data.error || "No autorizado"));
+    }
 
+  } catch (error) {
+    alert("Error en la comunicación con el servidor.");
+    console.error("Error al enviar token al backend:", error);
+  }
 }
